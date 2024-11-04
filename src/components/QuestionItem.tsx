@@ -1,7 +1,8 @@
 import { parseTemplate } from '@/utils/questionTemplate';
 import MathItem from './MathItem';
+import ToggleExplanation from './ToggleExplanation';
 
-interface QuestionText {
+export interface TextToken {
     type: string;
     value: string;
 }
@@ -9,22 +10,28 @@ interface QuestionText {
 interface QuestionItemProps {
     q: {
         id: number;
+        title: string;
         question: string;
         answer: {
             id: string;
             text: string;
         }[];
+        explanation: string[];
     };
 }
 
-const MATH_TYPE = 'math';
+export const MATH_TYPE = 'math';
 export default function QuestionItem({ q }: QuestionItemProps) {
-    const parsedQuestionText: QuestionText[] = parseTemplate(q.question);
-    console.log(parsedQuestionText);
+    const parsedQuestionText: TextToken[] = parseTemplate(q.question);
+    const parsedExplanationText: TextToken[][] = q?.explanation?.map(item =>
+        parseTemplate(item)
+    );
     return (
-        <div>
-            <div className="question-part">
-                <span>{q.id}：</span>
+        <div className="mb-2">
+            {q.title ? (
+                <div className="title-part text-red-500">{q.title}</div>
+            ) : null}
+            <div className="question-part mt-2 font-bold">
                 {parsedQuestionText.map((item, index) => {
                     if (item.type === MATH_TYPE) {
                         return <MathItem key={index} formula={item.value} />;
@@ -33,13 +40,14 @@ export default function QuestionItem({ q }: QuestionItemProps) {
                     }
                 })}
             </div>
-            <div className="answer-part mt-2">
+            <div className="answer-part mt-2 font-bold">
                 {q.answer.map(item => (
-                    <span className="mr-4" key={item.id}>
+                    <p className="mr-4 cursor-pointer" key={item.id}>
                         {item.text}
-                    </span>
+                    </p>
                 ))}
             </div>
+            <ToggleExplanation explanation={parsedExplanationText} />
         </div>
     );
 }
