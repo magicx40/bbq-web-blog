@@ -3,6 +3,8 @@ import localFont from 'next/font/local';
 import './globals.css';
 import 'katex/dist/katex.min.css';
 import { ClerkProvider } from '@clerk/nextjs';
+import Header from '@/components/Header';
+import { zhCN } from '@clerk/localizations'
 
 const geistSans = localFont({
     src: './fonts/GeistVF.woff',
@@ -26,11 +28,12 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <ClerkProvider>
+        <ClerkProvider localization={zhCN}>
             <html lang="en">
                 <body
                     className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}
                 >
+                    <Header />
                     {children}
                 </body>
             </html>

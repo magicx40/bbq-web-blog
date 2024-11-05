@@ -1,11 +1,16 @@
 'use client';
-import { SignInButton as SignInBtn } from '@clerk/clerk-react';
+import { useClerk } from '@clerk/clerk-react';
 import { SignedOut } from '@clerk/nextjs';
 export default function SignInButton() {
+    const { openSignIn } = useClerk();
+
+    const handleSignIn = () => {
+        openSignIn();
+      };
     return (
         <div>
             <SignedOut>
-                <SignInBtn />
+                <button className='text-sm hover:underline hover:text-blue-400' onClick={handleSignIn}>登录</button>
             </SignedOut>
         </div>
     );
