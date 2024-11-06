@@ -18,7 +18,7 @@ export default function Alink({
 }: AlinkProps) {
     const pathname = usePathname();
     const c = [
-        pathname === href ? 'text-blue-500' : '',
+        pathname === href ? 'text-blue-500 font-bold' : '',
         underline ? 'underline' : '',
         active ? 'text-blue-500' : '',
     ]
