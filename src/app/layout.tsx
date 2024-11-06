@@ -4,7 +4,9 @@ import './globals.css';
 import 'katex/dist/katex.min.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import Header from '@/components/Header';
-import { zhCN } from '@clerk/localizations'
+import { zhCN } from '@clerk/localizations';
+import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 
 const geistSans = localFont({
     src: './fonts/GeistVF.woff',
@@ -34,7 +36,9 @@ export default function RootLayout({
                     className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}
                 >
                     <Header />
-                    {children}
+                    <main className="mx-auto max-w-[1080px] min-h-[600px] bg-white border-x border-b py-4 px-2">
+                        {children}
+                    </main>
                 </body>
             </html>
         </ClerkProvider>

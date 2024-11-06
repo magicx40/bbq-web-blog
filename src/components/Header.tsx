@@ -2,6 +2,8 @@ import { currentUser } from '@clerk/nextjs/server';
 import SignInButton from '../components/SignInButton';
 import { UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
+import Alink from './Alink';
+
 export default async function Header() {
     const user = await currentUser();
     return (
@@ -12,8 +14,8 @@ export default async function Header() {
                         <h1 className="font-bold mr-10">BBQ WEB</h1>
                     </Link>
                     <nav className="flex gap-3">
-                        <Link href="/materials">学习资料</Link>
-                        <Link href="/exam">试题</Link>
+                        <Alink href="/materials">学习资料</Alink>
+                        <Alink href="/exam">试题</Alink>
                     </nav>
                 </div>
                 <div className="flex items-center gap-3.5">
