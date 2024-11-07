@@ -2,9 +2,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import 'katex/dist/katex.min.css';
-import { ClerkProvider } from '@clerk/nextjs';
 import Header from '@/components/Header';
-import { zhCN } from '@clerk/localizations';
 
 const geistSans = localFont({
     src: './fonts/GeistVF.woff',
@@ -28,17 +26,15 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <ClerkProvider localization={zhCN}>
-            <html lang="en">
-                <body
-                    className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}
-                >
-                    <Header />
-                    <main className="mx-auto max-w-[1080px] min-h-[600px] bg-white border-x border-b py-4 px-2">
-                        {children}
-                    </main>
-                </body>
-            </html>
-        </ClerkProvider>
+        <html lang="en">
+            <body
+                className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}
+            >
+                <Header />
+                <main className="mx-auto max-w-[1080px] min-h-[600px] bg-white border-x border-b py-4 px-2">
+                    {children}
+                </main>
+            </body>
+        </html>
     );
 }
