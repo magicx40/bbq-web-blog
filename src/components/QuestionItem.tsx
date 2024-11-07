@@ -1,11 +1,7 @@
 import { parseTemplate } from '@/utils/questionTemplate';
 import MathItem from './MathItem';
 import ToggleExplanation from './ToggleExplanation';
-
-export interface TextToken {
-    type: string;
-    value: string;
-}
+import { MATH_TYPE, TextToken } from '@/config/const';
 
 interface QuestionItemProps {
     q: {
@@ -20,7 +16,6 @@ interface QuestionItemProps {
     };
 }
 
-export const MATH_TYPE = 'math';
 export default function QuestionItem({ q }: QuestionItemProps) {
     const parsedQuestionText: TextToken[] = parseTemplate(q.question);
     const parsedExplanationText: TextToken[][] = q?.explanation?.map(item =>
@@ -31,7 +26,7 @@ export default function QuestionItem({ q }: QuestionItemProps) {
             {q.title ? (
                 <div className="title-part text-red-500">{q.title}</div>
             ) : null}
-            <div className="question-part mt-2 font-bold">
+            <div className="question-part mt-2 font-bold indent-8">
                 {parsedQuestionText.map((item, index) => {
                     if (item.type === MATH_TYPE) {
                         return <MathItem key={index} formula={item.value} />;

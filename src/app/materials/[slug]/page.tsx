@@ -1,10 +1,6 @@
 import QuestionItem from '@/components/QuestionItem';
-import { questions } from '@/config/const';
-export default async function Page({
-    params,
-}: {
-    params: Promise<{ slug: string }>;
-}) {
+import { questions } from '@/data/q';
+export default async function Page({}: { params: Promise<{ slug: string }> }) {
     return (
         <div>
             {questions.map(q => (

@@ -5,8 +5,6 @@ import 'katex/dist/katex.min.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import Header from '@/components/Header';
 import { zhCN } from '@clerk/localizations';
-import { useRouter } from 'next/router';
-import { usePathname } from 'next/navigation';
 
 const geistSans = localFont({
     src: './fonts/GeistVF.woff',

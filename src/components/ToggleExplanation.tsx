@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import MathItem from './MathItem';
-import { MATH_TYPE, TextToken } from './QuestionItem';
+import { MATH_TYPE, TextToken } from '@/config/const';
 
 interface ToggleExplanationProps {
     explanation: TextToken[][];
@@ -29,7 +29,7 @@ export default function ToggleExplanation({
                     <span>【 解析 】</span>
                     {explanation.map((text, idx) => {
                         return (
-                            <p key={idx}>
+                            <p className="indent-8" key={idx}>
                                 {text.map((item, index) => {
                                     if (item.type === MATH_TYPE) {
                                         return (
