@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Alink from './Alink';
+import SignInButton from './SignInButton';
 
 export default async function Header() {
     return (
@@ -13,6 +14,9 @@ export default async function Header() {
                         <Alink href="/materials">学习资料</Alink>
                         <Alink href="/exam">试题</Alink>
                     </nav>
+                </div>
+                <div>
+                    <SignInButton />
                 </div>
             </div>
         </header>
